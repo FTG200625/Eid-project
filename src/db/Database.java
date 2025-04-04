@@ -11,7 +11,9 @@ public class Database {
     public static void add(Entity e) {
         e.id = newId;
         ++newId;
+
         entities.add(e.copy());
+
     }
 
     public static Entity get(int id) throws EntityNotFoundException {

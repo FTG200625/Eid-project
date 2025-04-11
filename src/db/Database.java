@@ -1,7 +1,9 @@
 package db;
 
 import java.util.ArrayList;
+
 import java.util.Date;
+
 import java.util.HashMap;
 
 import db.exception.EntityNotFoundException;
@@ -19,6 +21,7 @@ public class Database {
         if (validator != null) {
             validator.validate(e);
         }
+
         if (e instanceof Trackable) {
             Date now = new Date();
             ((Trackable) e).setCreationDate(now);
@@ -27,6 +30,7 @@ public class Database {
         e.id = newId;
         ++newId;
         entities.add(e.copy());
+
     }
 
     public static Entity get(int id) throws EntityNotFoundException {
@@ -45,6 +49,7 @@ public class Database {
 
     public static void update(Entity e) throws EntityNotFoundException, InvalidEntityException {
         Validator validator = validators.get(e.getEntityCode());
+
         //validator.validate(e);
 
         if (e instanceof Trackable) {
@@ -55,6 +60,7 @@ public class Database {
         int index = entities.indexOf(oldE);
         entities.remove(oldE);
         entities.add(e.copy());
+
     }
     public static void registerValidator(int entityCode, Validator validator) {
 
@@ -63,6 +69,7 @@ public class Database {
         }
         validators.put(entityCode, validator);
     }
+
 
     public static ArrayList<Entity> getAll(int entityCode) {
         ArrayList<Entity> result = new ArrayList<>();
@@ -78,4 +85,5 @@ public class Database {
     public static ArrayList<Entity> getEntities(){
         return entities;
     }
+
 }
